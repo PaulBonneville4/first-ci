@@ -9,8 +9,9 @@ jobs:
         run : |
           pip install pytest
           pytest
-      - name : logout
-        docker logout
+      - name: logout
+        run :
+          docker logout
       - name: build docker image
         run : 
           docker build -t paulbonneville4/first-ci:test .
