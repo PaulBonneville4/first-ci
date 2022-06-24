@@ -1,23 +1,24 @@
 name: CI
 on: [push]
-jobs: 
-  test_build_push: 
+jobs:
+  test_build_push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run tests
-        run :
+        run : |
           pip install pytest
           pytest
       - name: build docker image
-        run :
-          docker build -t ynov_lyon .
+        run : 
+          docker build -t PaulBonneville4/first-ci:test .
       - name: run docker image
         run : 
-          docker run ynov_lyon
+          docker run PaulBonneville4/first-ci:test
       - name: docker login
         env:
           USERNAME: ${{secrets.DOCKER_USERNAME}}
           PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-        run: 
-          docker login -u username $USERNAME -p password
+        run : |
+          docker login -u $USERNAME -p $PASSWORD
+          docker push PaulBonneville4/first-ci:test
