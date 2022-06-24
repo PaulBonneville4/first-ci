@@ -4,7 +4,7 @@ def count_char(password):
 def check_invalid_special_char(password):
     """
         banned char: '@', '=', '+', ' '
-        return True if not invalid char else False
+        return True if not invali d char else False
     """
     for c in password:
         if c in ['@', '=', '+', ' ']:
